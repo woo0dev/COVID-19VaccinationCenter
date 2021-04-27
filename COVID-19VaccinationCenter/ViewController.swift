@@ -62,6 +62,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        
+        
         popupBtn.addTarget(self, action: #selector(goAlert), for: .touchUpInside)
         
         let centerData = try? JSONDecoder().decode(CenterData.self, from: jsonData!)

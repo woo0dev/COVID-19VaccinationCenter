@@ -11,5 +11,6 @@ target 'COVID-19VaccinationCenter' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SideMenu'
+  pod 'Charts'
 
 end

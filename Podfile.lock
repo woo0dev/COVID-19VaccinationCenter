@@ -1,4 +1,7 @@
 PODS:
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
   - NMapsMap (3.11.0)
   - RxCocoa (6.1.0):
     - RxRelay (= 6.1.0)
@@ -9,6 +12,7 @@ PODS:
   - SideMenu (6.5.0)
 
 DEPENDENCIES:
+  - Charts
   - NMapsMap
   - RxCocoa
   - RxSwift
@@ -16,6 +20,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Charts
     - NMapsMap
     - RxCocoa
     - RxRelay
@@ -23,12 +28,13 @@ SPEC REPOS:
     - SideMenu
 
 SPEC CHECKSUMS:
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   NMapsMap: e6dbea85c2c195c7532deb637a5e90fd70f94fed
   RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
   RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
   RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: ef46c2a3f75c9e6703d4f52249646cd3af7e5dff
+PODFILE CHECKSUM: 76731b84d2b77ece3ed08624141db38aaa4802d4
 
 COCOAPODS: 1.10.1

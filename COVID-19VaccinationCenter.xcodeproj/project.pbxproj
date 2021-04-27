@@ -21,6 +21,8 @@
 		E293607626257117007B1267 /* precautionInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293607526257117007B1267 /* precautionInfoVC.swift */; };
 		E293607B26257C31007B1267 /* 타이포 쌍문동B.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E293607A26257C31007B1267 /* 타이포 쌍문동B.ttf */; };
 		E293608A2625AA47007B1267 /* 예방접종2분기.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E29360892625AA47007B1267 /* 예방접종2분기.jpeg */; };
+		E2DB891C2637CE2F00C98CED /* vaccineImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E2DB891B2637CE2E00C98CED /* vaccineImage.jpeg */; };
+		E2DB891F2637CE5C00C98CED /* vaccineImage2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = E2DB891E2637CE5C00C98CED /* vaccineImage2.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		E293607526257117007B1267 /* precautionInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = precautionInfoVC.swift; sourceTree = "<group>"; };
 		E293607A26257C31007B1267 /* 타이포 쌍문동B.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "타이포 쌍문동B.ttf"; path = "../../../../../Library/Fonts/타이포 쌍문동B.ttf"; sourceTree = "<group>"; };
 		E29360892625AA47007B1267 /* 예방접종2분기.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "예방접종2분기.jpeg"; sourceTree = "<group>"; };
+		E2DB891B2637CE2E00C98CED /* vaccineImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = vaccineImage.jpeg; path = "../../../../Pictures/Photos Library.photoslibrary/resources/derivatives/B/vaccineImage.jpeg"; sourceTree = "<group>"; };
+		E2DB891E2637CE5C00C98CED /* vaccineImage2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = vaccineImage2.jpeg; path = "../../../../Pictures/Photos Library.photoslibrary/resources/renders/1/vaccineImage2.jpeg"; sourceTree = "<group>"; };
 		FFA40B332BB2C0B3B5CE8974 /* Pods-COVID-19VaccinationCenter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVID-19VaccinationCenter.debug.xcconfig"; path = "Target Support Files/Pods-COVID-19VaccinationCenter/Pods-COVID-19VaccinationCenter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,8 @@
 				E293607826257B32007B1267 /* fonts */,
 				E293603D26246ABD007B1267 /* AppDelegate.swift */,
 				E293603F26246ABD007B1267 /* SceneDelegate.swift */,
+				E2DB891B2637CE2E00C98CED /* vaccineImage.jpeg */,
+				E2DB891E2637CE5C00C98CED /* vaccineImage2.jpeg */,
 				E29360892625AA47007B1267 /* 예방접종2분기.jpeg */,
 				E293604126246ABD007B1267 /* ViewController.swift */,
 				E293604326246ABD007B1267 /* Main.storyboard */,
@@ -179,9 +185,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2DB891C2637CE2F00C98CED /* vaccineImage.jpeg in Resources */,
 				E293608A2625AA47007B1267 /* 예방접종2분기.jpeg in Resources */,
 				E293604D26246ABF007B1267 /* LaunchScreen.storyboard in Resources */,
 				E293604A26246ABF007B1267 /* Assets.xcassets in Resources */,
+				E2DB891F2637CE5C00C98CED /* vaccineImage2.jpeg in Resources */,
 				E293607B26257C31007B1267 /* 타이포 쌍문동B.ttf in Resources */,
 				E293604526246ABD007B1267 /* Main.storyboard in Resources */,
 			);

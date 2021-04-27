@@ -3,9 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>UIAppFonts</key>
-	<array>
-		<string>타이포 쌍문동B.ttf</string>
-	</array>
+	<array/>
 	<key>NMFClientId</key>
 	<string>k0plckihb0</string>
 	<key>CFBundleDevelopmentRegion</key>

@@ -50,9 +50,8 @@ class numberPeopleInfoVC: UIViewController {
         var PeopleData: DatumPeople = DatumPeople(accumulatedFirstCnt: 0, accumulatedSecondCnt: 0, baseDate: centerDataPeople!.data[0].baseDate, firstCnt: 0, secondCnt: 0, sido: "", totalFirstCnt: 0, totalSecondCnt: 0)
         var PeopleText = ""
         
-        var indexY: String.Index = centerDataPeople!.data[0].baseDate.index(centerDataPeople!.data[0].baseDate.startIndex, offsetBy: 9)
-        var indexMStart: String.Index = centerDataPeople!.data[0].baseDate.index(centerDataPeople!.data[0].baseDate.startIndex, offsetBy: 5)
-        var indexM: String.Index = centerDataPeople!.data[0].baseDate.index(indexMStart, offsetBy: 9)
+        let index: String.Index = centerDataPeople!.data[0].baseDate.index(centerDataPeople!.data[0].baseDate.startIndex, offsetBy: 9)
+        let indexStart: String.Index = centerDataPeople!.data[0].baseDate.index(centerDataPeople!.data[0].baseDate.startIndex, offsetBy: 5)
         
         barChartView.noDataText = "데이터가 없습니다."
         barChartView.noDataFont = .systemFont(ofSize: 20)
@@ -66,33 +65,37 @@ class numberPeopleInfoVC: UIViewController {
                 PeopleData = data
                 sido.append(data.sido)
                 cnt.append(Double(data.totalFirstCnt))
-                date.append(String(data.baseDate[indexMStart...indexY]))
-//                if citySelect != "전국" {
-//                    cnt.append(Double(data.totalSecondCnt))
-//                    cnt.append(Double(data.accumulatedFirstCnt))
-//                    cnt.append(Double(data.accumulatedSecondCnt))
-//                    cnt.append(Double(data.firstCnt))
-//                    cnt.append(Double(data.secondCnt))
-//                }
+                date.append(String(data.baseDate[indexStart...index]))
             }
         }
         
         setChart(dataPoints: sido, values: cnt, date: date)
             
-        var totalFirstIncrease = PeopleData.totalFirstCnt-PeopleData.accumulatedFirstCnt
-        var totalSecondIncrease = PeopleData.totalSecondCnt-PeopleData.accumulatedSecondCnt
+        let totalFirstIncrease = PeopleData.totalFirstCnt-PeopleData.accumulatedFirstCnt
+        let totalSecondIncrease = PeopleData.totalSecondCnt-PeopleData.accumulatedSecondCnt
         
-        
-        PeopleText = "▶︎전체 누적 통계(1차 접종) :\n \(People(value: PeopleData.totalFirstCnt)) ▴\(totalFirstIncrease) \n ▶︎전체 누적 통계(2차 접종) : \n \(People(value: PeopleData.totalSecondCnt)) ▴\(totalSecondIncrease) \n ▶︎당일 통계(1차 접종) :\n \(People(value: PeopleData.firstCnt)) \n ▶︎당일 통계(2차 접종) :\n \(People(value: PeopleData.secondCnt)) \n \(PeopleData.baseDate[...indexY]) \n"
+        PeopleText = "▶︎전체 누적 통계(1차 접종) \n \(People(value: PeopleData.totalFirstCnt)) ▴\(totalFirstIncrease) \n\n ▶︎전체 누적 통계(2차 접종) \n \(People(value: PeopleData.totalSecondCnt)) ▴\(totalSecondIncrease) \n\n ▶︎당일 통계(1차 접종) \n \(People(value: PeopleData.firstCnt)) \n\n ▶︎당일 통계(2차 접종) \n \(People(value: PeopleData.secondCnt)) \n\n \(PeopleData.baseDate[...index]) \n"
             
         titleTextField.text = PeopleData.sido + " 실시간 접종 현황"
         numberPeopleTV.text = PeopleText
 
+        let titleSize = UIFont.boldSystemFont(ofSize: 27)
+        let fontSize = UIFont.boldSystemFont(ofSize: 20)
         let attributeText = NSMutableAttributedString(string: numberPeopleTV.text)
-        
-        //attributeText.addAttribute(.foregroundColor, value: UIColor.white, range: numberPeopleTV.text)
+
         attributeText.addAttribute(.foregroundColor, value: UIColor.blue, range: (numberPeopleTV.text as NSString).range(of: "▴" + String(totalFirstIncrease)))
-        attributeText.addAttribute(.foregroundColor, value: UIColor.blue, range: (PeopleText as NSString).range(of: "▴" + String(totalSecondIncrease)))
+        attributeText.addAttribute(.foregroundColor, value: UIColor.blue, range: (numberPeopleTV.text as NSString).range(of: "▴" + String(totalSecondIncrease)))
+        
+        attributeText.addAttribute(.font, value: fontSize, range: (numberPeopleTV.text as NSString).range(of: "\(People(value: PeopleData.totalFirstCnt)) ▴\(totalFirstIncrease)"))
+        attributeText.addAttribute(.font, value: fontSize, range: (numberPeopleTV.text as NSString).range(of: "\(People(value: PeopleData.totalSecondCnt)) ▴\(totalSecondIncrease)"))
+        attributeText.addAttribute(.font, value: fontSize, range: (numberPeopleTV.text as NSString).range(of: "\(People(value: PeopleData.firstCnt))"))
+        attributeText.addAttribute(.font, value: fontSize, range: (numberPeopleTV.text as NSString).range(of: "\(People(value: PeopleData.secondCnt))"))
+        
+        attributeText.addAttribute(.font, value: titleSize, range: (numberPeopleTV.text as NSString).range(of: "▶︎전체 누적 통계(1차 접종)"))
+        attributeText.addAttribute(.font, value: titleSize, range: (numberPeopleTV.text as NSString).range(of: "▶︎전체 누적 통계(2차 접종)"))
+        attributeText.addAttribute(.font, value: titleSize, range: (numberPeopleTV.text as NSString).range(of: "▶︎당일 통계(1차 접종)"))
+        attributeText.addAttribute(.font, value: titleSize, range: (numberPeopleTV.text as NSString).range(of: "▶︎당일 통계(2차 접종)"))
+        
         
         numberPeopleTV.attributedText = attributeText
         
@@ -104,26 +107,20 @@ class numberPeopleInfoVC: UIViewController {
             let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
             dataEntries.append(dataEntry)
         }
-
+        // 차트가 어떤 데이터인지 보여준다.
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "접종인원")
-        
-        
-        
+        // 라벨의 위치
         barChartView.xAxis.labelPosition = .bottom
-        
+        // x축 데이터 라벨
         barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: date)
-        
+        // x축 데이터 간격
         barChartView.xAxis.granularity = 1
-        
-        //barChartView.xAxis.setLabelCount(dataPoints.count, force: false)
-
+        // 차트 우측에 y축 데이터 수치 표시 여부 false
         barChartView.rightAxis.enabled = false
-        
+        // 차트 애니메이션
         barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
-        
         // 차트 컬러
         chartDataSet.colors = [.systemBlue]
-        
         // 데이터 삽입
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.data = chartData

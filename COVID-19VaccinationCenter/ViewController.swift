@@ -7,6 +7,7 @@
 
 import UIKit
 import NMapsMap
+import CoreLocation
 
 let key = "g4CVdFveh5eMEiCUuZtycJ2FiYeYVhwfFXURiUZ2Kex4vl4MemZRTtifCWHhwXy59GzlUQj9ICPvXYIgCkn7Dg%3D%3D"
 let urlString = "https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=10000&serviceKey=g4CVdFveh5eMEiCUuZtycJ2FiYeYVhwfFXURiUZ2Kex4vl4MemZRTtifCWHhwXy59GzlUQj9ICPvXYIgCkn7Dg%3D%3D"
@@ -37,9 +38,9 @@ enum CenterType: String, Codable {
 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     
-    let locationManager = CLLocationManager()
     var address: String!
     var city = "전국"
+    var locationManager: CLLocationManager!
     
     @IBOutlet weak var mapView: NMFMapView!
     
@@ -62,7 +63,22 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        mapView.zoomLevel = 10
         
+        locationManager = CLLocationManager()
+        //locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        let coor = locationManager.location?.coordinate
+        let defaultLat = Double(coor!.latitude)
+        let defaultLng = Double(coor!.longitude)
+        
+        let camPosition =  NMGLatLng(lat: defaultLat, lng: defaultLng)
+        let cameraUpdate = NMFCameraUpdate(scrollTo: camPosition)
+        mapView.moveCamera(cameraUpdate)
+        
+        mapView.positionMode = .direction
         
         popupBtn.addTarget(self, action: #selector(goAlert), for: .touchUpInside)
         
@@ -77,13 +93,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         let infoWindow = NMFInfoWindow()
 
         for data in centerData!.data {
-            let defaultLat = Double(data.lat)
-            let defaultLng = Double(data.lng)
+            let lat = Double(data.lat)
+            let lng = Double(data.lng)
             
             let marker = NMFMarker()
-            marker.position = NMGLatLng(lat: defaultLng!, lng: defaultLat!)
+            marker.position = NMGLatLng(lat: lng!, lng: lat!)
             marker.iconImage = NMF_MARKER_IMAGE_BLACK
-            marker.iconTintColor = UIColor.green
+            marker.iconTintColor = UIColor.orange
             marker.captionText = data.centerName
             marker.captionRequestedWidth = 100
             marker.width = 20
@@ -97,7 +113,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 infoWindow.dataSource = dataSource
 
 
-                infoWindow.position = NMGLatLng(lat: defaultLng!, lng: defaultLat!)
+                infoWindow.position = NMGLatLng(lat: lng!, lng: lat!)
                 infoWindow.mapView = self.mapView
                 
                 if let marker = overlay as? NMFMarker {
@@ -145,7 +161,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     @objc func onPickDone() {
         city = selectCity
-        citySelect.text = selectCity
+        citySelect.text = "  " + selectCity
         citySelect.resignFirstResponder()
         selectCity = ""
     }

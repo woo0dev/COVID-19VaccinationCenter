@@ -33,29 +33,32 @@ class precautionInfoVC: UIViewController {
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
         
-//        let fontSize = UIFont.boldSystemFont(ofSize: 20)
-//        let attributeText = NSMutableAttributedString(string: textView.text)
-//        attributeText.addAttribute(.foregroundColor, value: UIColor(red: 124/255, green: 192/255, blue: 177/255, alpha: 1), range: (textView.text as NSString).range(of: "예방접종도우미 누리집 바로가기"))
-//        attributeText.addAttribute(.font, value: fontSize, range: (textView.text as NSString).range(of: "예방접종도우미 누리집 바로가기"))
-//
-//        attributeText.addAttribute(.foregroundColor, value: UIColor(red: 82/255, green: 182/255, blue: 162/255, alpha: 1), range: (textView.text as NSString).range(of: "예방접종 후 건강상태 확인하기"))
-//        attributeText.addAttribute(.font, value: fontSize, range: (textView.text as NSString).range(of: "예방접종 후 건강상태 확인하기"))
-//
-//        attributeText.addAttribute(.foregroundColor, value: UIColor.red, range: (textView.text as NSString).range(of: "예방접종 후 이상반응 신고하기"))
-//        attributeText.addAttribute(.font, value: fontSize, range: (textView.text as NSString).range(of: "예방접종 후 이상반응 신고하기"))
-//
+        let fontSize = UIFont.boldSystemFont(ofSize: 20)
+        let attributeText = NSMutableAttributedString(string: textView.text)
+        attributeText.addAttribute(.foregroundColor, value: UIColor(red: 124/255, green: 192/255, blue: 177/255, alpha: 1), range: (textView.text as NSString).range(of: "예방접종도우미 누리집 바로가기"))
+        attributeText.addAttribute(.font, value: fontSize, range: (textView.text as NSString).range(of: "예방접종도우미 누리집 바로가기"))
+
+        attributeText.addAttribute(.foregroundColor, value: UIColor(red: 82/255, green: 182/255, blue: 162/255, alpha: 1), range: (textView.text as NSString).range(of: "예방접종 후 건강상태 확인하기"))
+        attributeText.addAttribute(.font, value: fontSize, range: (textView.text as NSString).range(of: "예방접종 후 건강상태 확인하기"))
+
+        attributeText.addAttribute(.foregroundColor, value: UIColor.red, range: (textView.text as NSString).range(of: "예방접종 후 이상반응 신고하기"))
+        attributeText.addAttribute(.font, value: fontSize, range: (textView.text as NSString).range(of: "예방접종 후 이상반응 신고하기"))
+
 //        textView.attributedText = attributeText
         
         textView.textAlignment = NSTextAlignment.center
         
-        let linkedText = NSMutableAttributedString(attributedString: textView.attributedText)
-        let helperLinked = linkedText.setAsLink(textToFind: "예방접종도우미 누리집 바로가기", linkURL: "https://nip.kdca.go.kr")
-        let checkLinked = linkedText.setAsLink(textToFind: "예방접종 후 건강상태 확인하기", linkURL: "https://nip.kdca.go.kr/irgd/covid.do?MnLv1=3")
-        let declarationLinked = linkedText.setAsLink(textToFind: "예방접종 후 이상반응 신고하기", linkURL: "https://nip.kdca.go.kr/irgd/index.html")
+        let linkedText = NSMutableAttributedString(string: textView.text)
+        let helperLinked = attributeText.setAsLink(textToFind: "예방접종도우미 누리집 바로가기", linkURL: "https://nip.kdca.go.kr")
+        let checkLinked = attributeText.setAsLink(textToFind: "예방접종 후 건강상태 확인하기", linkURL: "https://nip.kdca.go.kr/irgd/covid.do?MnLv1=3")
+        let declarationLinked = attributeText.setAsLink(textToFind: "예방접종 후 이상반응 신고하기", linkURL: "https://nip.kdca.go.kr/irgd/index.html")
         
         if helperLinked || checkLinked || declarationLinked {
-            textView.attributedText = NSAttributedString(attributedString: linkedText)
+            textView.attributedText = attributeText
         }
+        
+        
+        
                 
         
         

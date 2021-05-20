@@ -49,7 +49,7 @@ class precautionInfoVC: UIViewController {
         
         textView.textAlignment = NSTextAlignment.center
         
-        let linkedText = NSMutableAttributedString(string: textView.text)
+        //let linkedText = NSMutableAttributedString(string: textView.text)
         let helperLinked = attributeText.setAsLink(textToFind: "예방접종도우미 누리집 바로가기", linkURL: "https://nip.kdca.go.kr")
         let checkLinked = attributeText.setAsLink(textToFind: "예방접종 후 건강상태 확인하기", linkURL: "https://nip.kdca.go.kr/irgd/covid.do?MnLv1=3")
         let declarationLinked = attributeText.setAsLink(textToFind: "예방접종 후 이상반응 신고하기", linkURL: "https://nip.kdca.go.kr/irgd/index.html")

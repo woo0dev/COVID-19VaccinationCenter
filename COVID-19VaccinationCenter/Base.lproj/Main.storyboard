@@ -8,6 +8,64 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Side MenuVC-->
+        <scene sceneID="1Bv-3d-0Pi">
+            <objects>
+                <viewController storyboardIdentifier="SideMenuVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="whC-JK-iMS" customClass="SideMenuVC" customModule="COVID_19VaccinationCenter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8VK-zK-iXx">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7nv-XF-m0w">
+                                <rect key="frame" x="119" y="271" width="152" height="248"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k5Y-kM-qAL" userLabel="정보보기">
+                                        <rect key="frame" x="0.0" y="0.0" width="152" height="85"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
+                                        <state key="normal" title="정보보기"/>
+                                        <connections>
+                                            <action selector="infoBtn:" destination="whC-JK-iMS" eventType="touchUpInside" id="UGd-ds-xhe"/>
+                                            <segue destination="yI3-J7-gth" kind="show" identifier="infoSegue" id="Brq-ak-UxA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFk-EU-d9m" userLabel="실시간접종현황">
+                                        <rect key="frame" x="0.0" y="85" width="152" height="80"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
+                                        <state key="normal" title="실시간접종현황"/>
+                                        <connections>
+                                            <action selector="peopleBtn:" destination="whC-JK-iMS" eventType="touchUpInside" id="rOo-u9-o9u"/>
+                                            <segue destination="qIm-2O-vGs" kind="show" identifier="peopleSegue" id="D8E-DS-Yfb"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aId-af-CbG" userLabel="주의사항">
+                                        <rect key="frame" x="0.0" y="165" width="152" height="83"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="50"/>
+                                        <state key="normal" title="주의사항"/>
+                                        <connections>
+                                            <action selector="precautionBtn:" destination="whC-JK-iMS" eventType="touchUpInside" id="Qz0-vQ-a5Q"/>
+                                            <segue destination="pUR-gS-fT3" kind="show" identifier="precautionSegue" id="3pk-ON-8fl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Rbj-hE-ZTs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7nv-XF-m0w" firstAttribute="centerY" secondItem="8VK-zK-iXx" secondAttribute="centerY" id="3zX-00-b74"/>
+                            <constraint firstItem="7nv-XF-m0w" firstAttribute="centerX" secondItem="8VK-zK-iXx" secondAttribute="centerX" id="lqB-9T-sqc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ahF-vq-dQN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FsO-u3-nas" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1070.7692307692307" y="94.549763033175353"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -20,6 +78,11 @@
                                 <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
+                                    <barButtonItem title="메뉴" id="uIR-3b-jc6" userLabel="메뉴">
+                                        <connections>
+                                            <segue destination="RaD-u5-B7g" kind="show" id="oZx-0t-9nw"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="정보보기" id="BEF-Ed-bsz">
                                         <connections>
                                             <action selector="infoBtn:" destination="BYZ-38-t0r" id="mYT-ug-z1n"/>
@@ -82,6 +145,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-216.92307692307691" y="88.862559241706151"/>
+        </scene>
+        <!--Custom Side Menu-->
+        <scene sceneID="NYc-si-hU0">
+            <objects>
+                <navigationController id="RaD-u5-B7g" customClass="CustomSideMenu" customModule="COVID_19VaccinationCenter" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="2F5-23-5Gm"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AI9-jP-ain">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="whC-JK-iMS" kind="relationship" relationship="rootViewController" id="wwh-ea-wT9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QzK-BT-XSV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1940" y="89"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="Cmq-fQ-HXd">
@@ -211,14 +291,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KT6-3m-8iR">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KT6-3m-8iR">
                                 <rect key="frame" x="28" y="202" width="334" height="334"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHF-mn-hnS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHF-mn-hnS">
                                 <rect key="frame" x="28" y="544" width="334" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="Bft-Vk-ygE"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="확인">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -227,6 +308,15 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ED9-tY-Pxd"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="SHF-mn-hnS" firstAttribute="leading" secondItem="ED9-tY-Pxd" secondAttribute="leading" constant="28" id="9q1-4p-OAA"/>
+                            <constraint firstItem="ED9-tY-Pxd" firstAttribute="bottom" secondItem="SHF-mn-hnS" secondAttribute="bottom" constant="209" id="ItJ-XJ-xYh"/>
+                            <constraint firstItem="SHF-mn-hnS" firstAttribute="centerX" secondItem="5mn-ZC-L1R" secondAttribute="centerX" id="dqB-p3-7Pq"/>
+                            <constraint firstItem="SHF-mn-hnS" firstAttribute="top" secondItem="KT6-3m-8iR" secondAttribute="bottom" constant="8" id="edB-6b-OWl"/>
+                            <constraint firstItem="SHF-mn-hnS" firstAttribute="trailing" secondItem="KT6-3m-8iR" secondAttribute="trailing" id="k7O-Zo-5hs"/>
+                            <constraint firstItem="SHF-mn-hnS" firstAttribute="leading" secondItem="KT6-3m-8iR" secondAttribute="leading" id="oBs-hq-zit"/>
+                            <constraint firstItem="KT6-3m-8iR" firstAttribute="top" secondItem="ED9-tY-Pxd" secondAttribute="top" constant="158" id="w0C-QS-EMu"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tb2-3I-Prt"/>
                     <connections>
@@ -239,6 +329,11 @@
             <point key="canvasLocation" x="601.53846153846155" y="-572.2748815165877"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3pk-ON-8fl"/>
+        <segue reference="D8E-DS-Yfb"/>
+        <segue reference="Brq-ak-UxA"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

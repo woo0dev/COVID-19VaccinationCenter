@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4CBB6C8A4249091DABA1993D /* Pods_COVID_19VaccinationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3FCA35385E286990E6B090 /* Pods_COVID_19VaccinationCenter.framework */; };
+		E222E5D5265621FC008E3135 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222E5D4265621FC008E3135 /* SideMenuVC.swift */; };
+		E222E5D726562253008E3135 /* CustomSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222E5D626562253008E3135 /* CustomSideMenu.swift */; };
 		E293603E26246ABD007B1267 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293603D26246ABD007B1267 /* AppDelegate.swift */; };
 		E293604026246ABD007B1267 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293603F26246ABD007B1267 /* SceneDelegate.swift */; };
 		E293604226246ABD007B1267 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293604126246ABD007B1267 /* ViewController.swift */; };
@@ -28,6 +30,8 @@
 /* Begin PBXFileReference section */
 		3E3FCA35385E286990E6B090 /* Pods_COVID_19VaccinationCenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_COVID_19VaccinationCenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981B31B45247453A8457EBBF /* Pods-COVID-19VaccinationCenter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-COVID-19VaccinationCenter.release.xcconfig"; path = "Target Support Files/Pods-COVID-19VaccinationCenter/Pods-COVID-19VaccinationCenter.release.xcconfig"; sourceTree = "<group>"; };
+		E222E5D4265621FC008E3135 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
+		E222E5D626562253008E3135 /* CustomSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSideMenu.swift; sourceTree = "<group>"; };
 		E293603A26246ABD007B1267 /* COVID-19VaccinationCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "COVID-19VaccinationCenter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E293603D26246ABD007B1267 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E293603F26246ABD007B1267 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				E293605B26246FCD007B1267 /* popupViewController.swift */,
 				E29360722625708D007B1267 /* numberPeopleInfoVC.swift */,
 				E293607526257117007B1267 /* precautionInfoVC.swift */,
+				E222E5D4265621FC008E3135 /* SideMenuVC.swift */,
+				E222E5D626562253008E3135 /* CustomSideMenu.swift */,
 			);
 			path = "COVID-19VaccinationCenter";
 			sourceTree = "<group>";
@@ -248,8 +254,10 @@
 				E293604826246ABD007B1267 /* COVID_19VaccinationCenter.xcdatamodeld in Sources */,
 				E29360732625708D007B1267 /* numberPeopleInfoVC.swift in Sources */,
 				E293605C26246FCD007B1267 /* popupViewController.swift in Sources */,
+				E222E5D726562253008E3135 /* CustomSideMenu.swift in Sources */,
 				E293604226246ABD007B1267 /* ViewController.swift in Sources */,
 				E293605926246CEC007B1267 /* infoViewController.swift in Sources */,
+				E222E5D5265621FC008E3135 /* SideMenuVC.swift in Sources */,
 				E293603E26246ABD007B1267 /* AppDelegate.swift in Sources */,
 				E293604026246ABD007B1267 /* SceneDelegate.swift in Sources */,
 			);

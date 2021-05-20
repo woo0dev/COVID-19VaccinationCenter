@@ -96,13 +96,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         mapView.positionMode = .direction
         
         popupBtn.addTarget(self, action: #selector(goAlert), for: .touchUpInside)
-        
-    
-        
-        //view.addSubview(mapView)
-        
-        //let cameraPosition = mapView.cameraPosition
-        
+
         address = centerData?.data[0].address
         
         let infoWindow = NMFInfoWindow()
@@ -113,13 +107,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 let lng = Double(data.lng)
                 
                 let marker = NMFMarker()
-                
-                
-                
                 marker.position = NMGLatLng(lat: lng!, lng: lat!)
                 marker.iconImage = NMF_MARKER_IMAGE_BLACK
+                marker.isHideCollidedMarkers = true
                 marker.iconTintColor = UIColor.orange
                 marker.captionText = data.centerName
+                marker.captionMinZoom = 9
+                marker.captionMaxZoom = 16
                 marker.captionRequestedWidth = 100
                 marker.width = 20
                 marker.height = 30
@@ -227,152 +221,70 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if self.searchBar.text == "서현이" {
-            let refreshAlert = UIAlertController(title: "서현이짱", message: self.searchBar.text!, preferredStyle: UIAlertController.Style.alert)
-            
-            refreshAlert.addAction(UIAlertAction(title: "❤︎", style: .default, handler: { (action: UIAlertAction!) in print("검색확인")
-                self.searchBar.showsCancelButton = false
-                self.searchBar.text = ""
-                self.searchBar.resignFirstResponder()
-
-            }))
-            present(refreshAlert, animated: true, completion: nil)
-        }
+//        if self.searchBar.text == "서현이" {
+//            let refreshAlert = UIAlertController(title: "서현이짱", message: self.searchBar.text!, preferredStyle: UIAlertController.Style.alert)
+//
+//            refreshAlert.addAction(UIAlertAction(title: "❤︎", style: .default, handler: { (action: UIAlertAction!) in print("검색확인")
+//                self.searchBar.showsCancelButton = false
+//                self.searchBar.text = ""
+//                self.searchBar.resignFirstResponder()
+//
+//            }))
+//            present(refreshAlert, animated: true, completion: nil)
+//        }
 
         for m in markerList {
             m.mapView = nil
         }
         markerList.removeAll()
+        for data in centerData!.data {
+            let infoWindow = NMFInfoWindow()
 
-//        for location in locationData {
-        //if self.searchBar.text! != nil {
-                for data in centerData!.data {
-                    let infoWindow = NMFInfoWindow()
+            let lat = Double(data.lat)
+            let lng = Double(data.lng)
 
-                    let lat = Double(data.lat)
-                    let lng = Double(data.lng)
-
-                    let marker = NMFMarker()
+            let marker = NMFMarker()
                     
-                    var range: Range<String.Index>
+            var range: Range<String.Index>
                     
-                    let arr = Array(self.searchBar.text!)
-                    if self.searchBar.text?.count != 0 {
-                        let startRange = data.centerName.range(of: String(arr[0]))
-                        let endRange = data.centerName.range(of: String(arr[arr.count-1]))
-                        if startRange?.lowerBound != nil && endRange?.lowerBound != nil{
-                            let rangeCount = data.centerName.distance(from: data.centerName.startIndex, to: endRange!.lowerBound)
-                            let start = data.centerName.index(data.centerName.startIndex, offsetBy: 6)
-                            let end = data.centerName.index(data.centerName.startIndex, offsetBy: rangeCount+1)
-                            if start < end {
-                                range = start..<end
+            let arr = Array(self.searchBar.text!)
+            if self.searchBar.text?.count != 0 {
+                
+                let startRange = data.centerName.range(of: String(arr[0]))
+                let endRange = data.centerName.range(of: String(arr[arr.count-1]))
+                
+                if startRange?.lowerBound != nil && endRange?.lowerBound != nil{
+                    
+                    let rangeCount = data.centerName.distance(from: data.centerName.startIndex, to: endRange!.lowerBound)
+                    
+                    let start = data.centerName.index(data.centerName.startIndex, offsetBy: 6)
+                    let end = data.centerName.index(data.centerName.startIndex, offsetBy: rangeCount+1)
+                    
+                    if start < end {
+                        range = start..<end
                                 
-                                if String(self.searchBar.text!) == data.centerName[range] {
+                        if String(self.searchBar.text!) == data.centerName[range] {
                                     
-                                    marker.position = NMGLatLng(lat: lng!, lng: lat!)
-                                    marker.iconImage = NMF_MARKER_IMAGE_BLACK
-                                    marker.iconTintColor = UIColor.red
-                                    marker.captionText = data.centerName
-                                    marker.captionRequestedWidth = 100
-                                    marker.width = 20
-                                    marker.height = 30
-                                    marker.mapView = mapView
-
-                                    marker.touchHandler = { (overlay) -> Bool in
-                                        let dataSource = NMFInfoWindowDefaultTextSource.data()
-                                        dataSource.title = data.centerName
-                                        infoWindow.dataSource = dataSource
-
-
-                                        infoWindow.position = NMGLatLng(lat: lng!, lng: lat!)
-                                        infoWindow.mapView = self.mapView
-
-                                        if let marker = overlay as? NMFMarker {
-                                            if marker.infoWindow == nil {
-                                                self.address = data.address
-                                                infoWindow.open(with: marker)
-                                            } else {
-                                                infoWindow.close()
-                                            }
-                                        }
-                                        return true
-                                    }
-                                    mapView.zoomLevel = 7
-                                }
-                            }
-                            else {
-                                let range = end..<start
-                                
-                                if String(self.searchBar.text!) == data.centerName[range] {
-                                    
-                                    marker.position = NMGLatLng(lat: lng!, lng: lat!)
-                                    marker.iconImage = NMF_MARKER_IMAGE_BLACK
-                                    marker.iconTintColor = UIColor.red
-                                    marker.captionText = data.centerName
-                                    marker.captionRequestedWidth = 100
-                                    marker.width = 20
-                                    marker.height = 30
-                                    marker.mapView = mapView
-
-                                    marker.touchHandler = { (overlay) -> Bool in
-                                        let dataSource = NMFInfoWindowDefaultTextSource.data()
-                                        dataSource.title = data.centerName
-                                        infoWindow.dataSource = dataSource
-
-
-                                        infoWindow.position = NMGLatLng(lat: lng!, lng: lat!)
-                                        infoWindow.mapView = self.mapView
-
-                                        if let marker = overlay as? NMFMarker {
-                                            if marker.infoWindow == nil {
-                                                self.address = data.address
-                                                infoWindow.open(with: marker)
-                                            } else {
-                                                infoWindow.close()
-                                            }
-                                        }
-                                        return true
-                                    }
-                                    mapView.zoomLevel = 7
-                                    
-                                }
-                            }
-                            markerList.append(marker)
-                        }
-                        
-//                        for m in markerList {
-//                            m.mapView = mapView
-//                        }
-                    } else {
-                        for m in markerList {
-                            m.mapView = nil
-                        }
-                        markerList.removeAll()
-                        for data in centerData!.data {
-                            let lat = Double(data.lat)
-                            let lng = Double(data.lng)
-                            
-                            let marker = NMFMarker()
-
                             marker.position = NMGLatLng(lat: lng!, lng: lat!)
                             marker.iconImage = NMF_MARKER_IMAGE_BLACK
-                            marker.iconTintColor = UIColor.orange
+                            marker.isHideCollidedMarkers = true
+                            marker.iconTintColor = UIColor.red
                             marker.captionText = data.centerName
+                            marker.captionMinZoom = 9
+                            marker.captionMaxZoom = 16
                             marker.captionRequestedWidth = 100
                             marker.width = 20
                             marker.height = 30
-                            
-                            //marker.mapView = mapView
-                            
+                            marker.mapView = mapView
+
                             marker.touchHandler = { (overlay) -> Bool in
                                 let dataSource = NMFInfoWindowDefaultTextSource.data()
                                 dataSource.title = data.centerName
                                 infoWindow.dataSource = dataSource
 
-
                                 infoWindow.position = NMGLatLng(lat: lng!, lng: lat!)
                                 infoWindow.mapView = self.mapView
-                                
+
                                 if let marker = overlay as? NMFMarker {
                                     if marker.infoWindow == nil {
                                         self.address = data.address
@@ -383,68 +295,108 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                                 }
                                 return true
                             }
-                            
-                            markerList.append(marker)
+                            let camPosition =  NMGLatLng(lat: lng!, lng: lat!)
+                            let cameraUpdate = NMFCameraUpdate(scrollTo: camPosition)
+                            mapView.moveCamera(cameraUpdate)
+                            mapView.zoomLevel = 7
                         }
                     }
-                    for m in markerList {
-                        m.mapView = mapView
+                    else {
+                        let range = end..<start
+                            
+                        if String(self.searchBar.text!) == data.centerName[range] {
+                            
+                            marker.position = NMGLatLng(lat: lng!, lng: lat!)
+                            marker.iconImage = NMF_MARKER_IMAGE_BLACK
+                            marker.isHideCollidedMarkers = true
+                            marker.iconTintColor = UIColor.red
+                            marker.captionText = data.centerName
+                            marker.captionMinZoom = 9
+                            marker.captionMaxZoom = 16
+                            marker.captionRequestedWidth = 100
+                            marker.width = 20
+                            marker.height = 30
+                            marker.mapView = mapView
+
+                            marker.touchHandler = { (overlay) -> Bool in
+                                let dataSource = NMFInfoWindowDefaultTextSource.data()
+                                dataSource.title = data.centerName
+                                infoWindow.dataSource = dataSource
+                                infoWindow.position = NMGLatLng(lat: lng!, lng: lat!)
+                                infoWindow.mapView = self.mapView
+
+                                if let marker = overlay as? NMFMarker {
+                                    if marker.infoWindow == nil {
+                                        self.address = data.address
+                                        infoWindow.open(with: marker)
+                                    } else {
+                                        infoWindow.close()
+                                    }
+                                }
+                                return true
+                            }
+                            let camPosition =  NMGLatLng(lat: lng!, lng: lat!)
+                            let cameraUpdate = NMFCameraUpdate(scrollTo: camPosition)
+                            mapView.moveCamera(cameraUpdate)
+                            mapView.zoomLevel = 7
+                            
+                        }
                     }
+                    markerList.append(marker)
                 }
-//            }
-//        }
+            } else {
+                for m in markerList {
+                    m.mapView = nil
+                }
+                markerList.removeAll()
+                for data in centerData!.data {
+                    let lat = Double(data.lat)
+                    let lng = Double(data.lng)
+                    
+                    let marker = NMFMarker()
+                    marker.position = NMGLatLng(lat: lng!, lng: lat!)
+                    marker.iconImage = NMF_MARKER_IMAGE_BLACK
+                    marker.isHideCollidedMarkers = true
+                    marker.iconTintColor = UIColor.orange
+                    marker.captionText = data.centerName
+                    marker.captionMinZoom = 9
+                    marker.captionMaxZoom = 16
+                    marker.captionRequestedWidth = 100
+                    marker.width = 20
+                    marker.height = 30
+                    
+                    //marker.mapView = mapView
+                    
+                    marker.touchHandler = { (overlay) -> Bool in
+                        let dataSource = NMFInfoWindowDefaultTextSource.data()
+                        dataSource.title = data.centerName
+                        infoWindow.dataSource = dataSource
+
+                        infoWindow.position = NMGLatLng(lat: lng!, lng: lat!)
+                        infoWindow.mapView = self.mapView
+                                
+                        if let marker = overlay as? NMFMarker {
+                            if marker.infoWindow == nil {
+                                self.address = data.address
+                                infoWindow.open(with: marker)
+                            } else {
+                                infoWindow.close()
+                            }
+                        }
+                        return true
+                    }
+                    
+                    markerList.append(marker)
+                }
+            }
+            for m in markerList {
+                m.mapView = mapView
+            }
+        }
         self.searchBar.showsCancelButton = false
         self.searchBar.text = ""
         self.searchBar.resignFirstResponder()
-
-
-//        bMarker = true
-//
-//        viewDidLoad()
-//
-//        for data in centerData!.data {
-//            let infoWindow = NMFInfoWindow()
-//
-//            let lat = Double(data.lat)
-//            let lng = Double(data.lng)
-//
-//            let marker = NMFMarker()
-//
-//            if searchBar.text == data.centerName {
-//                marker.position = NMGLatLng(lat: lng!, lng: lat!)
-//                marker.iconImage = NMF_MARKER_IMAGE_BLACK
-//                marker.iconTintColor = UIColor.orange
-//                marker.captionText = data.centerName
-//                marker.captionRequestedWidth = 100
-//                marker.width = 20
-//                marker.height = 30
-//                marker.mapView = mapView
-//
-//                marker.touchHandler = { (overlay) -> Bool in
-//                    let dataSource = NMFInfoWindowDefaultTextSource.data()
-//                    dataSource.title = data.centerName
-//                    infoWindow.dataSource = dataSource
-//
-//
-//                    infoWindow.position = NMGLatLng(lat: lng!, lng: lat!)
-//                    infoWindow.mapView = self.mapView
-//
-//                    if let marker = overlay as? NMFMarker {
-//                        if marker.infoWindow == nil {
-//                            self.address = data.address
-//                            infoWindow.open(with: marker)
-//                        } else {
-//                            infoWindow.close()
-//                        }
-//                    }
-//                    return true
-//                }
-//            }
-//        }
-        
-        
     }
-    
     
 }
 

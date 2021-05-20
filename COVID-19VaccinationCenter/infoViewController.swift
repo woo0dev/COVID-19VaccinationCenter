@@ -7,7 +7,36 @@
 
 import UIKit
 
-class infoViewController: UIViewController {
+struct Welcome2 {
+    let response: Response
+}
+
+struct Response {
+    let header: Header
+    let body: Body
+}
+
+struct Body {
+    let items: Items
+    let numOfRows, pageNo, totalCount: String
+}
+
+struct Items {
+    let item: Item
+}
+
+struct Item {
+    let accDefRate, accExamCnt, accExamCompCnt, careCnt: String
+    let clearCnt, createDt, deathCnt, decideCnt: String
+    let examCnt, resutlNegCnt, seq, stateDt: String
+    let stateTime, updateDt: String
+}
+
+struct Header {
+    let resultCode, resultMsg: String
+}
+
+class infoViewController: UIViewController, XMLParserDelegate    {
     
     var address: String = ""
     
@@ -35,4 +64,10 @@ class infoViewController: UIViewController {
     }
     
     @IBOutlet weak var infoTextView: UITextView!
+    
+    func setParser(from url: URL, delegate: XMLParserDelegate) {
+        let parser = XMLParser(contentsOf: url)
+        parser!.delegate = self
+        parser!.parse()
+    }
 }

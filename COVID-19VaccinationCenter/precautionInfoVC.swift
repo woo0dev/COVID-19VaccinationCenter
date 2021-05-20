@@ -35,6 +35,7 @@ class precautionInfoVC: UIViewController {
         
         let fontSize = UIFont.boldSystemFont(ofSize: 20)
         let attributeText = NSMutableAttributedString(string: textView.text)
+        
         attributeText.addAttribute(.foregroundColor, value: UIColor(red: 124/255, green: 192/255, blue: 177/255, alpha: 1), range: (textView.text as NSString).range(of: "예방접종도우미 누리집 바로가기"))
         attributeText.addAttribute(.font, value: fontSize, range: (textView.text as NSString).range(of: "예방접종도우미 누리집 바로가기"))
 
@@ -56,13 +57,7 @@ class precautionInfoVC: UIViewController {
         if helperLinked || checkLinked || declarationLinked {
             textView.attributedText = attributeText
         }
-        
-        
-        
-                
-        
-        
-        
+
     }
     
     @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {

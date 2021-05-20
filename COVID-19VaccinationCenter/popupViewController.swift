@@ -21,6 +21,13 @@ class popupViewController: UIViewController {
         img = UIImage(named: "예방접종2분기.jpeg")
         imageView.image = img
         
+        
+        if let url = URL(string: "https://ncvr.kdca.go.kr/cobk/index.html") {
+            UIApplication.shared.open(url, options: [:])
+        }
+
+        
+        
         acceptBtn.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         // Do any additional setup after loading the view.
     }
@@ -28,5 +35,4 @@ class popupViewController: UIViewController {
     @objc func dismissView(){
         dismiss(animated: false, completion: nil)
     }
-
 }

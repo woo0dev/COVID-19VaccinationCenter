@@ -221,17 +221,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        if self.searchBar.text == "서현이" {
-//            let refreshAlert = UIAlertController(title: "서현이짱", message: self.searchBar.text!, preferredStyle: UIAlertController.Style.alert)
-//
-//            refreshAlert.addAction(UIAlertAction(title: "❤︎", style: .default, handler: { (action: UIAlertAction!) in print("검색확인")
-//                self.searchBar.showsCancelButton = false
-//                self.searchBar.text = ""
-//                self.searchBar.resignFirstResponder()
-//
-//            }))
-//            present(refreshAlert, animated: true, completion: nil)
-//        }
 
         for m in markerList {
             m.mapView = nil
